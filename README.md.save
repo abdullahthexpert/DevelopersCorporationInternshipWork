@@ -16,7 +16,8 @@ A simple Node.js web application used as a target for a 3-week cybersecurity ass
 - Injecting a script tag via the ?name= query parameter executed arbitrary JavaScript in the browser
 - Risk: Attackers can steal session cookies, redirect users, or perform actions on their behalf
 
-**2. Plain-Text Password Storage**
+**2. Plai
+n-Text Password Storage**
 - User passwords were stored as plain text in the in-memory database
 - Risk: A single database leak exposes every user's password, and since people reuse passwords, it compromises their other accounts too
 

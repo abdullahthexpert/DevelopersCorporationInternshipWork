@@ -5,8 +5,22 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const helmet = require('helmet');
+const winston = require('winston');
 
 const app = express();
+
+// Logger setup
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'security.log' })
+  ]
+});
 
 // Security: secure HTTP headers
 app.use(helmet());
@@ -18,19 +32,16 @@ app.use(session({
   saveUninitialized: true 
 }));
 
-// Secret for JWT (in real apps, use environment variables)
 const JWT_SECRET = 'your-jwt-secret-key-change-this';
 
-// Fake user database - passwords now hashed
 const users = [];
 
-// Pre-hash the admin password on startup
 (async () => {
   const hashedPassword = await bcrypt.hash('admin1234', 10);
   users.push({ id: 1, username: 'admin', email: 'admin@example.com', password: hashedPassword });
+  logger.info('Application started');
 })();
 
-// Helper: escape HTML to prevent XSS
 function escapeHtml(text) {
   return validator.escape(text);
 }
@@ -51,27 +62,27 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  // Validate inputs exist and are clean
   if (!username || !password || validator.isEmpty(username) || validator.isEmpty(password)) {
+    logger.warn('Login attempt with empty fields');
     return res.status(400).send('Username and password required');
   }
 
-  // Find user
   const user = users.find(u => u.username === username);
   if (!user) {
+    logger.warn(`Failed login - user not found: ${username}`);
     return res.status(401).send('Invalid credentials. <a href="/login">Try again</a>');
   }
 
-  // Compare hashed password
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
+    logger.warn(`Failed login - wrong password for: ${username}`);
     return res.status(401).send('Invalid credentials. <a href="/login">Try again</a>');
   }
 
-  // Generate JWT token
   const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
   req.session.user = user;
   req.session.token = token;
+  logger.info(`Successful login: ${username}`);
   res.redirect('/profile');
 });
 
@@ -88,48 +99,46 @@ app.get('/signup', (req, res) => {
 app.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
-  // Input validation
   if (!username || !email || !password) {
+    logger.warn('Signup attempt with missing fields');
     return res.status(400).send('All fields required. <a href="/signup">Try again</a>');
   }
   if (!validator.isAlphanumeric(username) || !validator.isLength(username, { min: 3, max: 20 })) {
+    logger.warn(`Invalid username format attempted: ${username}`);
     return res.status(400).send('Username must be 3-20 alphanumeric characters');
   }
   if (!validator.isEmail(email)) {
+    logger.warn(`Invalid email format attempted: ${email}`);
     return res.status(400).send('Invalid email format');
   }
   if (!validator.isLength(password, { min: 6 })) {
+    logger.warn('Signup attempt with short password');
     return res.status(400).send('Password must be at least 6 characters');
   }
-
-  // Check duplicate username
   if (users.find(u => u.username === username)) {
+    logger.warn(`Duplicate username attempted: ${username}`);
     return res.status(400).send('Username already taken');
   }
 
-  // Hash password before storing
   const hashedPassword = await bcrypt.hash(password, 10);
-  users.push({ 
-    id: users.length + 1, 
-    username, 
-    email, 
-    password: hashedPassword 
-  });
-
+  users.push({ id: users.length + 1, username, email, password: hashedPassword });
+  logger.info(`New user signed up: ${username} (${email})`);
   res.send('Account created! <a href="/login">Login</a>');
 });
 
-// PROFILE - XSS fixed by escaping output
+// PROFILE
 app.get('/profile', (req, res) => {
   if (!req.session.user) {
+    logger.warn('Unauthenticated profile access attempt');
     return res.redirect('/login');
   }
   const rawName = req.query.name || req.session.user.username;
-  const safeName = escapeHtml(rawName); // <-- prevents XSS
+  const safeName = escapeHtml(rawName);
   res.send(`<h1>Welcome, ${safeName}!</h1><a href="/logout">Logout</a>`);
 });
 
 app.get('/logout', (req, res) => {
+  logger.info(`User logged out: ${req.session.user ? req.session.user.username : 'unknown'}`);
   req.session.destroy();
   res.redirect('/');
 });

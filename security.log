@@ -1,0 +1,7 @@
+{"level":"info","message":"Application started","timestamp":"2026-05-10T13:29:00.111Z"}
+{"level":"info","message":"New user signed up: testt (test123@meowmail.com)","timestamp":"2026-05-10T13:29:32.246Z"}
+{"level":"info","message":"Successful login: testt","timestamp":"2026-05-10T13:29:38.765Z"}
+{"level":"info","message":"Application started","timestamp":"2026-05-10T13:30:24.786Z"}
+{"level":"info","message":"User logged out: unknown","timestamp":"2026-05-10T13:30:24.937Z"}
+{"level":"warn","message":"Failed login - user not found: test111","timestamp":"2026-05-10T13:30:30.794Z"}
+{"level":"info","message":"Application started","timestamp":"2026-05-10T13:31:09.389Z"}
