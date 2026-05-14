@@ -1,4 +1,3 @@
-cat > README.md << 'ENDOFFILE'
 # User Management System — Cybersecurity Internship
 **DevelopersHub Corporation | Intern: Muhammad Abdullah | ID: DHC 364**
 
@@ -107,4 +106,3 @@ npm install
 npm start
 
 App runs at http://localhost:3000
-ENDOFFILE
