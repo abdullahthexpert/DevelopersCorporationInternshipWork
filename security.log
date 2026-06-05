@@ -16,3 +16,99 @@
 {"level":"info","message":"Successful login: admin","timestamp":"2026-06-05T12:33:29.445Z"}
 {"level":"info","message":"User logged out: admin","timestamp":"2026-06-05T12:35:17.713Z"}
 {"level":"info","message":"Successful login: admin","timestamp":"2026-06-05T12:35:23.751Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T12:44:10.164Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T12:45:46.597Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T13:13:46.729Z"}
+{"level":"warn","message":"Signup attempt with short password","timestamp":"2026-06-05T13:13:50.471Z"}
+{"level":"warn","message":"Failed login - user not found: ZAP","timestamp":"2026-06-05T13:13:50.476Z"}
+{"level":"warn","message":"Invalid username format attempted: c:/Windows/system.ini","timestamp":"2026-06-05T13:13:55.476Z"}
+{"level":"warn","message":"Failed login - user not found: c:/Windows/system.ini","timestamp":"2026-06-05T13:13:55.486Z"}
+{"level":"warn","message":"Invalid username format attempted: ../../../../../../../../../../../../../../../../Windows/system.ini","timestamp":"2026-06-05T13:13:55.491Z"}
+{"level":"warn","message":"Failed login - user not found: ../../../../../../../../../../../../../../../../Windows/system.ini","timestamp":"2026-06-05T13:13:55.495Z"}
+{"level":"warn","message":"Invalid username format attempted: c:\\Windows\\system.ini","timestamp":"2026-06-05T13:13:55.499Z"}
+{"level":"warn","message":"Failed login - user not found: c:\\Windows\\system.ini","timestamp":"2026-06-05T13:13:55.504Z"}
+{"level":"warn","message":"Invalid username format attempted: ..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Windows\\system.ini","timestamp":"2026-06-05T13:13:55.508Z"}
+{"level":"warn","message":"Failed login - user not found: ..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Windows\\system.ini","timestamp":"2026-06-05T13:13:55.514Z"}
+{"level":"warn","message":"Invalid username format attempted: /etc/passwd","timestamp":"2026-06-05T13:13:55.517Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.523Z"}
+{"level":"warn","message":"Invalid username format attempted: ../../../../../../../../../../../../../../../../etc/passwd","timestamp":"2026-06-05T13:13:55.525Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.531Z"}
+{"level":"warn","message":"Invalid username format attempted: /","timestamp":"2026-06-05T13:13:55.533Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.537Z"}
+{"level":"warn","message":"Invalid username format attempted: ../../../../../../../../../../../../../../../../","timestamp":"2026-06-05T13:13:55.541Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.545Z"}
+{"level":"warn","message":"Invalid username format attempted: c:/","timestamp":"2026-06-05T13:13:55.548Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.551Z"}
+{"level":"warn","message":"Invalid username format attempted: c:\\","timestamp":"2026-06-05T13:13:55.553Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.557Z"}
+{"level":"warn","message":"Invalid username format attempted: WEB-INF/web.xml","timestamp":"2026-06-05T13:13:55.558Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.564Z"}
+{"level":"warn","message":"Invalid username format attempted: WEB-INF\\web.xml","timestamp":"2026-06-05T13:13:55.567Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.570Z"}
+{"level":"warn","message":"Invalid username format attempted: /WEB-INF/web.xml","timestamp":"2026-06-05T13:13:55.573Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.577Z"}
+{"level":"warn","message":"Invalid username format attempted: \\WEB-INF\\web.xml","timestamp":"2026-06-05T13:13:55.580Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.585Z"}
+{"level":"warn","message":"Invalid username format attempted: thishouldnotexistandhopefullyitwillnot","timestamp":"2026-06-05T13:13:55.588Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.591Z"}
+{"level":"warn","message":"Signup attempt with short password","timestamp":"2026-06-05T13:13:55.596Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.599Z"}
+{"level":"warn","message":"Invalid username format attempted: /signup","timestamp":"2026-06-05T13:13:55.603Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.606Z"}
+{"level":"warn","message":"Invalid username format attempted: \\signup","timestamp":"2026-06-05T13:13:55.608Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.611Z"}
+{"level":"warn","message":"Invalid email format attempted: c:/Windows/system.ini","timestamp":"2026-06-05T13:13:55.615Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.618Z"}
+{"level":"warn","message":"Invalid email format attempted: ../../../../../../../../../../../../../../../../Windows/system.ini","timestamp":"2026-06-05T13:13:55.623Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.625Z"}
+{"level":"warn","message":"Invalid email format attempted: c:\\Windows\\system.ini","timestamp":"2026-06-05T13:13:55.629Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.632Z"}
+{"level":"warn","message":"Invalid email format attempted: ..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\Windows\\system.ini","timestamp":"2026-06-05T13:13:55.635Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.637Z"}
+{"level":"warn","message":"Invalid email format attempted: /etc/passwd","timestamp":"2026-06-05T13:13:55.643Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.647Z"}
+{"level":"warn","message":"Invalid email format attempted: ../../../../../../../../../../../../../../../../etc/passwd","timestamp":"2026-06-05T13:13:55.651Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.654Z"}
+{"level":"warn","message":"Invalid email format attempted: /","timestamp":"2026-06-05T13:13:55.657Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.659Z"}
+{"level":"warn","message":"Invalid email format attempted: ../../../../../../../../../../../../../../../../","timestamp":"2026-06-05T13:13:55.663Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.666Z"}
+{"level":"warn","message":"Invalid email format attempted: c:/","timestamp":"2026-06-05T13:13:55.669Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.672Z"}
+{"level":"warn","message":"Invalid email format attempted: c:\\","timestamp":"2026-06-05T13:13:55.675Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.678Z"}
+{"level":"warn","message":"Invalid email format attempted: WEB-INF/web.xml","timestamp":"2026-06-05T13:13:55.683Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.685Z"}
+{"level":"warn","message":"Invalid email format attempted: WEB-INF\\web.xml","timestamp":"2026-06-05T13:13:55.690Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.692Z"}
+{"level":"warn","message":"Invalid email format attempted: /WEB-INF/web.xml","timestamp":"2026-06-05T13:13:55.695Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.698Z"}
+{"level":"warn","message":"Invalid email format attempted: \\WEB-INF\\web.xml","timestamp":"2026-06-05T13:13:55.703Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.706Z"}
+{"level":"warn","message":"Invalid email format attempted: thishouldnotexistandhopefullyitwillnot","timestamp":"2026-06-05T13:13:55.709Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.711Z"}
+{"level":"warn","message":"Invalid email format attempted: signup","timestamp":"2026-06-05T13:13:55.715Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.719Z"}
+{"level":"warn","message":"Invalid email format attempted: /signup","timestamp":"2026-06-05T13:13:55.724Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.728Z"}
+{"level":"warn","message":"Invalid email format attempted: \\signup","timestamp":"2026-06-05T13:13:55.732Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.736Z"}
+{"level":"info","message":"New user signed up: ZAP (zaproxy@example.com)","timestamp":"2026-06-05T13:13:55.800Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.805Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.810Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.815Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.820Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.825Z"}
+{"level":"warn","message":"Signup attempt with short password","timestamp":"2026-06-05T13:13:55.829Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.833Z"}
+{"level":"warn","message":"Signup attempt with short password","timestamp":"2026-06-05T13:13:55.836Z"}
+{"level":"warn","message":"Signup attempt with short password","timestamp":"2026-06-05T13:13:55.845Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.849Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.853Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.856Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.861Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.866Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.870Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.875Z"}
+{"level":"warn","message":"Duplicate username attempted: ZAP","timestamp":"2026-06-05T13:13:55.879Z"}
+{"level":"warn","message":"Rate limit exceeded for IP: ::ffff:127.0.0.1","timestamp":"2026-06-05T13:13:55.889Z"}

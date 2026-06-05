@@ -59,9 +59,12 @@ app.use(bodyParser.json());
 app.use(session({
   secret: process.env.SESSION_SECRET || 'change-this-in-production',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    sameSite: 'strict'
+  }
 }));
-
 const JWT_SECRET = 'your-jwt-secret-key-change-this';
 const API_KEY = 'dhc-intern-api-key-364';
 const users = [];
