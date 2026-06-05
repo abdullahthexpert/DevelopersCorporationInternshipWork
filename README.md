@@ -164,3 +164,61 @@ App runs at http://localhost:3000
 
 Protected API: GET http://localhost:3000/api/users
 Required header: x-api-key: dhc-intern-api-key-364
+---
+
+## Week 5: Ethical Hacking & Exploiting Vulnerabilities
+
+### Tools Used
+- SQLMap 1.8.4 (automated SQL injection scanner)
+- Burp Suite Community Edition 2026.3.3 (HTTP proxy and request interceptor)
+- Manual code review
+
+### SQL Injection — Finding & Fix
+
+**Vulnerable Endpoint Added:** GET /api/search?q=
+- Raw string concatenation used to build SQL query directly from user input
+- SQLMap confirmed 3 injection types: boolean-based blind, time-based blind, UNION query
+- Back-end DBMS identified as SQLite
+
+**SQLMap Finding (before fix):**
+
+Parameter: q (GET)
+Type: boolean-based blind
+Type: time-based blind
+Type: UNION query (3 columns)
+
+**Fix — Prepared Statements:**
+- Replaced raw string concatenation with parameterized query using ? placeholder
+- User input is now passed as a separate argument, never interpreted as SQL
+- SQLMap re-scan after fix: all tested parameters came back clean — not injectable
+
+### CSRF Protection
+
+**Implementation:**
+- Used Node.js built-in crypto module to generate 32-byte random tokens
+- Token generated server-side on GET /login and stored in session
+- Token embedded as hidden field in login form
+- POST /login validates submitted token against session token
+- Mismatch returns 403 and logs warning with offending IP
+
+**Burp Suite Verification:**
+- Intercepted POST /login request via Burp Suite proxy
+- Confirmed _csrf token visible in request body alongside credentials
+- Requests without valid token are blocked with 403 Forbidden
+
+### Ethical Hacking Report Summary
+
+| # | Vulnerability | Severity | Status |
+|---|--------------|----------|--------|
+| 1 | SQL Injection on /api/search | Critical | Fixed |
+| 2 | CSRF on login form | High | Fixed |
+| 3 | Missing rate limiting (Week 4) | High | Fixed |
+| 4 | No CORS policy (Week 4) | Medium | Fixed |
+| 5 | Missing CSP headers (Week 4) | Medium | Fixed |
+
+### Security Checklist Update
+- [x] SQL injection identified with SQLMap
+- [x] SQLi fixed with prepared statements
+- [x] CSRF tokens implemented on login form
+- [x] CSRF protection verified via Burp Suite interception
+- [x] HTTP request/response analysis with Burp Suite proxy
