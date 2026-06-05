@@ -222,3 +222,74 @@ Type: UNION query (3 columns)
 - [x] CSRF tokens implemented on login form
 - [x] CSRF protection verified via Burp Suite interception
 - [x] HTTP request/response analysis with Burp Suite proxy
+---
+
+## Week 6: Advanced Security Audits & Final Deployment
+
+### Tools Used
+- Nikto 2.1.5 (web server vulnerability scanner)
+- Lynis 3.0.9 (system hardening and compliance audit)
+- OWASP ZAP 2.17.0 (automated web application penetration testing)
+
+### Nikto Scan Results
+
+Ran against http://localhost:3000
+
+Findings:
+- Cookie connect.sid missing httpOnly flag — Fixed by adding httpOnly: true and sameSite: strict to session config
+- Server leaks inodes via ETags — informational, low risk in dev environment
+- All other findings were uncommon headers flagged as informational — these are actually our security headers from helmet working correctly (CSP, HSTS, X-Frame-Options, CORS, rate limit headers)
+
+Result: 0 critical vulnerabilities. 1 finding fixed (httpOnly cookie).
+
+### Lynis System Audit Results
+
+Ran: sudo lynis audit system
+
+- Hardening index: 60/100
+- Tests performed: 260
+- Firewall: active
+- Malware scanner: not installed (acceptable for dev environment)
+- Security audit module: passed
+- Vulnerability scan module: passed
+
+A hardening index of 60 is typical for a development workstation. Production hardening would involve installing a malware scanner, tightening kernel parameters, and enabling full disk encryption.
+
+### OWASP ZAP Automated Scan Results
+
+Target: http://localhost:3000
+
+Alerts found (4):
+
+| Alert | Risk | Notes |
+|-------|------|-------|
+| CSP: Failure to Define Directive with No Fallback | Medium | Minor CSP gap, non-critical |
+| CSP: style-src unsafe-inline | Low | Set intentionally for inline styles |
+| Authentication Request Identified | Informational | ZAP detected login form |
+| Session Management Response Identified | Informational | ZAP detected session cookies |
+
+No XSS, SQL injection, or critical vulnerabilities detected — confirms that security fixes from Weeks 2-5 are effective.
+
+### OWASP Top 10 Compliance Summary
+
+| # | Risk | Status |
+|---|------|--------|
+| A01 | Broken Access Control | Mitigated — session auth, profile protection |
+| A02 | Cryptographic Failures | Mitigated — bcrypt password hashing |
+| A03 | Injection | Mitigated — prepared statements, input validation |
+| A04 | Insecure Design | Mitigated — rate limiting, CSRF tokens |
+| A05 | Security Misconfiguration | Mitigated — helmet, CSP, HSTS, CORS |
+| A06 | Vulnerable Components | Monitored — all packages up to date |
+| A07 | Auth & Session Failures | Mitigated — JWT, httpOnly cookies, session management |
+| A08 | Software & Data Integrity | Partial — no CI/CD pipeline in dev environment |
+| A09 | Security Logging & Monitoring | Mitigated — winston logging, Fail2Ban |
+| A10 | SSRF | N/A — no external URL fetching in app |
+
+### Final Security Checklist
+- [x] Nikto web server scan completed
+- [x] Lynis system audit completed (hardening index: 60/100)
+- [x] OWASP ZAP automated scan completed
+- [x] httpOnly and sameSite flags added to session cookie
+- [x] OWASP Top 10 compliance reviewed
+- [x] All critical and high vulnerabilities resolved
+- [x] Full security progression documented across 6 weeks
