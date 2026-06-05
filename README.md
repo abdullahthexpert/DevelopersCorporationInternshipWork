@@ -2,7 +2,7 @@
 **DevelopersHub Corporation | Intern: Muhammad Abdullah | ID: DHC 364**
 
 ## Overview
-A simple Node.js web application used as a target for a 3-week cybersecurity assessment and hardening exercise. The app includes signup, login, and profile pages built with Express.js.
+A simple Node.js web application used as a target for a 6-week cybersecurity assessment and hardening exercise. The app includes signup, login, profile pages, and a protected API endpoint built with Express.js.
 
 ---
 
@@ -98,11 +98,69 @@ Finding: Port 3306 is exposed. In production this should be restricted to intern
 
 ---
 
+## Week 4: Advanced Threat Detection & Web Security
+
+### Packages Installed
+- express-rate-limit, cors
+
+### Implementations
+
+**1. Rate Limiting (express-rate-limit)**
+- Login endpoint: max 5 attempts per 15 minutes per IP
+- Global limiter: max 100 requests per minute across all routes
+- Blocked IPs receive a 429 Too Many Requests response
+- All rate limit violations are logged via winston
+
+**2. CORS Configuration (cors)**
+- Restricted to localhost:3000 only
+- Allowed methods: GET, POST
+- Allowed headers: Content-Type, x-api-key
+- Credentials enabled for session support
+
+**3. Content Security Policy (CSP)**
+- Configured via helmet's contentSecurityPolicy option
+- defaultSrc: self only — blocks external resource loading
+- scriptSrc: self only — prevents inline and third-party script injection
+- objectSrc: none — blocks Flash and plugin-based attacks
+- frameSrc: none — prevents clickjacking via iframes
+
+**4. HTTP Strict Transport Security (HSTS)**
+- Configured via helmet's hsts option
+- maxAge: 31,536,000 seconds (1 year)
+- includeSubDomains: true
+- preload: true — eligible for browser HSTS preload lists
+
+**5. API Key Authentication**
+- Protected endpoint: GET /api/users
+- Requires x-api-key header with valid key
+- Returns sanitized user list (no password hashes)
+- Unauthorized attempts logged and rejected with 401
+
+**6. Intrusion Detection (Fail2Ban)**
+- Installed and configured Fail2Ban on the host system
+- Custom jail: nodejs-auth watching security.log
+- Triggers on 5 failed login attempts within 15 minutes
+- Bans offending IP for 1 hour
+- Jail confirmed active via fail2ban-client status nodejs-auth
+
+### Security Checklist Update
+- [x] Rate limiting on login and global routes
+- [x] CORS restricted to trusted origin
+- [x] Content Security Policy configured
+- [x] HSTS enforced
+- [x] API key authentication on protected endpoints
+- [x] Fail2Ban intrusion detection active
+
+---
+
 ## Tech Stack
-Node.js, Express.js, bcrypt, validator, jsonwebtoken, helmet, winston
+Node.js, Express.js, bcrypt, validator, jsonwebtoken, helmet, winston, express-rate-limit, cors, Fail2Ban
 
 ## How to Run
 npm install
-npm start
+node server.js
 
 App runs at http://localhost:3000
+
+Protected API: GET http://localhost:3000/api/users
+Required header: x-api-key: dhc-intern-api-key-364
