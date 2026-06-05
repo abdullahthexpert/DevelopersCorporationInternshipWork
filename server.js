@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const winston = require('winston');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
-
+const crypto = require('crypto');
 const app = express();
 
 // Logger setup
@@ -44,6 +44,7 @@ app.use(helmet({
     preload: true
   }
 }));
+
 
 // CORS configuration
 app.use(cors({
@@ -109,11 +110,13 @@ app.get('/', (req, res) => {
   res.send('<h1>Welcome</h1><a href="/login">Login</a> | <a href="/signup">Signup</a>');
 });
 
-// LOGIN with rate limiting
 app.get('/login', (req, res) => {
+  const csrfToken = crypto.randomBytes(32).toString('hex');
+  req.session.csrfToken = csrfToken;
   res.send(`<form method="POST" action="/login">
     <input name="username" placeholder="Username"/><br/>
     <input name="password" type="password" placeholder="Password"/><br/>
+    <input type="hidden" name="_csrf" value="${csrfToken}"/>
     <button type="submit">Login</button>
   </form>`);
 });
@@ -133,6 +136,10 @@ app.post('/login', loginLimiter, async (req, res) => {
   if (!passwordMatch) {
     logger.warn(`Failed login - wrong password for: ${username}`);
     return res.status(401).send('Invalid credentials. <a href="/login">Try again</a>');
+  }
+  if (req.body._csrf !== req.session.csrfToken) {
+    logger.warn(`CSRF token mismatch from IP: ${req.ip}`);
+    return res.status(403).send('Invalid CSRF token. Request blocked.');
   }
   const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
   req.session.user = user;
@@ -191,16 +198,38 @@ app.get('/profile', (req, res) => {
 });
 
 // PROTECTED API ENDPOINT (requires API key)
-app.get('/api/users', requireApiKey, (req, res) => {
-  logger.info(`API /users accessed from IP: ${req.ip}`);
-  const safeUsers = users.map(u => ({ id: u.id, username: u.username, email: u.email }));
-  res.json(safeUsers);
+app.get('/api/search', (req, res) => {
+  const query = req.query.q;
+  const sql = "SELECT * FROM products WHERE name = ?";
+  db.all(sql, [query], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
 });
 
 app.get('/logout', (req, res) => {
   logger.info(`User logged out: ${req.session.user ? req.session.user.username : 'unknown'}`);
   req.session.destroy();
   res.redirect('/');
+});
+// INTENTIONALLY VULNERABLE endpoint for SQLi demo (Week 5)
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database(':memory:');
+
+db.serialize(() => {
+  db.run("CREATE TABLE products (id INT, name TEXT, price TEXT)");
+  db.run("INSERT INTO products VALUES (1, 'Widget', '$10')");
+  db.run("INSERT INTO products VALUES (2, 'Gadget', '$20')");
+  db.run("INSERT INTO products VALUES (3, 'Doohickey', '$30')");
+});
+
+app.get('/api/search', (req, res) => {
+  const query = req.query.q;
+  const sql = "SELECT * FROM products WHERE name = '" + query + "'";
+  db.all(sql, (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
 });
 
 app.listen(3000, () => console.log('App running at http://localhost:3000'));

@@ -7,3 +7,12 @@
 {"level":"info","message":"Application started","timestamp":"2026-05-10T13:31:09.389Z"}
 {"level":"info","message":"Application started","timestamp":"2026-05-14T05:49:02.775Z"}
 {"level":"info","message":"Application started","timestamp":"2026-06-05T11:33:49.418Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T12:06:08.960Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T12:14:02.635Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T12:24:44.661Z"}
+{"level":"info","message":"Application started","timestamp":"2026-06-05T12:32:30.406Z"}
+{"level":"warn","message":"Failed login - user not found: abd","timestamp":"2026-06-05T12:32:44.869Z"}
+{"level":"warn","message":"Failed login - user not found: abdullahthexpert","timestamp":"2026-06-05T12:32:57.324Z"}
+{"level":"info","message":"Successful login: admin","timestamp":"2026-06-05T12:33:29.445Z"}
+{"level":"info","message":"User logged out: admin","timestamp":"2026-06-05T12:35:17.713Z"}
+{"level":"info","message":"Successful login: admin","timestamp":"2026-06-05T12:35:23.751Z"}
